@@ -18,16 +18,25 @@ $(document).ready(function() {
       winImg: "https://media.giphy.com/media/4NpCE946C6MvvWMyD6/giphy.gif",
       loseImg: "https://media.giphy.com/media/ZFKHhEw2oCKhq/giphy.gif",
       factoid: "The #11 seed has reached the Final Four three times; LSU (1986), George Mason (2006), and VCU (2011)."
-      },
+    },
 
     trivia2 = {
-      question: "Which team won the first NCAA tournament?",
+      question: "Which school won the first NCAA tournament?",
       answerArr: ["North Carolina", "Oregon", "Princeton", "Ohio State"],
       correctAnswer: 1,
       winImg: "https://media.giphy.com/media/1isLj38HKNnlSKC4Ym/giphy.gif",
       loseImg: "https://media.giphy.com/media/AjixnPlG9oqWY/giphy.gif",
       factoid: "Oregon defeated Ohio State 46-33 in the first NCAA tournament title game, held in 1939."
-      }
+    },
+
+    trivia3 = {
+      question: "Which school has participated in the most NCAA tournaments?",
+      answerArr: ["Kentucky", "North Carolina", "UCLA", "Kansas"],
+      correctAnswer: 0,
+      winImg: "https://media.giphy.com/media/1lBHM3zkIFTKSdHCHR/giphy.gif",
+      loseImg: "https://media.giphy.com/media/vkrg8cmXK2QWQ/giphy.gif",
+      factoid: "Kentucky has the most appearances with 58, leading UNC (50), Kansas (48), and UCLA (47)."
+    }
 
   ];
 
@@ -96,7 +105,6 @@ console.log(trivQuest.length);
       $("div").empty();
     }
 
-
   
   // Display a timer
   function startTimer() {
@@ -148,7 +156,8 @@ console.log(trivQuest.length);
     correctGuesses++;
     currentQuestion++;
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
-    $("#triviaQuestion").html("That's correct! " + trivia.factoid);
+    var funFact = trivia.factoid;
+    $("#triviaQuestion").html("That's correct! " + funFact);
     $("#answerBlock").html("Correct Answer: " + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.winImg);
@@ -159,7 +168,8 @@ console.log(trivQuest.length);
     wrongGuesses++;
     currentQuestion++;
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
-    $("#triviaQuestion").html("Nice try! " + trivia.factoid);
+    var funFact = trivia.factoid;
+    $("#triviaQuestion").html("Nice try! " + funFact);
     $("#answerBlock").html("Correct Answer: " + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.loseImg);
