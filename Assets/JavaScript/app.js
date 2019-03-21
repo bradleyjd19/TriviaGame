@@ -12,24 +12,27 @@ $(document).ready(function() {
   var trivQuest = [
 
     trivia1 = {
-      question: "What is the first letter alphabetically?",
-      answerArr: ["A", "B", "C", "D"],
-      correctAnswer: 0,
-      winImg: "https://media.giphy.com/media/tLQfm7dmGqxfa/giphy.gif",
-      loseImg: "https://media.giphy.com/media/Ty9Sg8oHghPWg/giphy.gif"
+      question: "What is the lowest seed to reach the Final Four?",
+      answerArr: ["6", "8", "11", "13"],
+      correctAnswer: 2,
+      winImg: "https://media.giphy.com/media/4NpCE946C6MvvWMyD6/giphy.gif",
+      loseImg: "https://media.giphy.com/media/ZFKHhEw2oCKhq/giphy.gif",
+      factoid: "The #11 seed has reached the Final Four three times; LSU (1986), George Mason (2006), and VCU (2011)."
       },
 
     trivia2 = {
-      question: "Which number comes first?",
-      answerArr: ["1", "2", "3", "4"],
-      correctAnswer: 0,
-      winImg: "https://media.giphy.com/media/tLQfm7dmGqxfa/giphy.gif",
-      loseImg: "https://media.giphy.com/media/Ty9Sg8oHghPWg/giphy.gif"
+      question: "Which team won the first NCAA tournament?",
+      answerArr: ["North Carolina", "Oregon", "Princeton", "Ohio State"],
+      correctAnswer: 1,
+      winImg: "https://media.giphy.com/media/1isLj38HKNnlSKC4Ym/giphy.gif",
+      loseImg: "https://media.giphy.com/media/AjixnPlG9oqWY/giphy.gif",
+      factoid: "Oregon defeated Ohio State 46-33 in the first NCAA tournament title game, held in 1939."
       }
 
   ];
 
 console.log(trivQuest[0].correctAnswer);
+console.log(trivQuest.length);
 
 
   // Create a start screen
@@ -74,23 +77,24 @@ console.log(trivQuest[0].correctAnswer);
       choiceClick(trivia);
     }
 
+    function nextQuestion() {
+      clearScreen();
+      resetTimer();
+      if (currentQuestion < trivQuest.length) {
+        callQuestion(trivQuest[currentQuestion]);
+      }
+      else {
+        stopTimer();
+        $("#timerBlock").remove();
+        console.log("show the results");
+      }
+    }
+
     function clearScreen() {
       $("span").remove();
       $("button").remove();
       $("div").empty();
-      resetTimer();
-      // nextQuestion();
     }
-
-    // function nextQuestion() {
-    //   var trivia = "trivia" + (currentQuestion + 1);
-    //   console.log(trivia);
-    //   callQuestion(trivia);
-    //   return currentQuestion;
-    // }
-
-    // nextQuestion();
-
 
 
   
@@ -135,16 +139,17 @@ console.log(trivQuest[0].correctAnswer);
         console.log("Correct");
         console.log(correctGuesses);
       }      
-      setTimeout(clearScreen, 1000 * 5);
+      setTimeout(nextQuestion, 1000 * 10);
     })
   }
 
 
   function correct(trivia) {
-    correctGuesses++;    
+    correctGuesses++;
+    currentQuestion++;
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
-    $("#triviaQuestion").html("That's correct!");
-    $("#answerBlock").html(rightChoice);
+    $("#triviaQuestion").html("That's correct! " + trivia.factoid);
+    $("#answerBlock").html("Correct Answer: " + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.winImg);
     $("#answerImg").append(imgDisplay);
@@ -152,9 +157,10 @@ console.log(trivQuest[0].correctAnswer);
 
   function incorrect(trivia) {
     wrongGuesses++;
+    currentQuestion++;
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
-    $("#triviaQuestion").html("Nice try, the correct answer is: ");
-    $("#answerBlock").html(rightChoice);
+    $("#triviaQuestion").html("Nice try! " + trivia.factoid);
+    $("#answerBlock").html("Correct Answer: " + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.loseImg);
     $("#answerImg").append(imgDisplay);
