@@ -2,7 +2,82 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "NCAA Colorado Buffs Boulder Bold";
+  src: url("../Fonts/NCAA\ Colorado\ Buffs\ Boulder\ Bold.ttf");
+}
+
 body {
   background: url("../Images/bball-background.jpg");
   background-size: cover;
+  font-family: "NCAA Colorado Buffs Boulder Bold";
+}
+
+#header-row {
+  margin-top: 80px;
+}
+
+#logo {
+  width: 500px;
+  height: 212px;
+}
+
+#button-div,
+#title-div {
+  display: flex;
+  justify-content: center;
+}
+
+#titleName,
+#startButton {  
+  text-align: center;
+  color: white;
+}
+
+#titleName {
+  height: 60px;
+  width: 300px;
+  margin-top: 20px;
+  line-height: 60px;
+  font-size: 60px;
+}
+
+#startButton {
+  height: 50px;
+  width: 200px;
+  margin-top: 75px;
+  font-size: 40px;  
+  background-color: rgb(19, 82, 165);
+}
+
+#timerBlock,
+#triviaQuestion,
+#answerBlock,
+#answerImg {
+  text-align: center;
+  color: white;
+}
+
+#timerBlock {
+  padding: 50px;
+  font-size: 50px;
+}
+
+#triviaQuestion {
+  padding-top: 70px;
+  font-size: 40px;
+}
+
+#answerBlock {
+  padding-top: 50px;
+  font-size: 30px;
+}
+
+.choices {
+  width: 300px;
+  height: 60px;
+  line-height: 60px;
+  margin-bottom: 20px;
+  background-color: rgb(19, 82, 165);
+  color: white;
 }

@@ -16,21 +16,67 @@
 </head>
 
 <body>
-  
-  <h1 id="titleName">Trivia Game</h1>
 
-  <div id="buttonContainer">
-    <button id="startButton" input="button">START</button>
+  <audio id="bgAudio" src="Assets/Sounds/March Madness.mp3" type="audio/mpeg" loop="loop">
+  </audio>
+  
+  <div class="container" id="header-container">
+    <div class="row justify-content-end" id="header-row">
+      <div class="col-md-6">
+        <img id="logo" src="Assets/Images/logo.jpg">
+      </div>
+    </div>
   </div>
 
-  <div id="timerBlock"></div>
+  <div class="container">
+    <div class="row justify-content-end" id="title-row">
+      <div class="col-md-6" id="title-div">
+        <h1 id="titleName">Trivia Game</h1>
+      </div>
+    </div>
+  </div>
 
-  <div id="triviaQuestion"></div>
+  <div class="container">
+    <div class="row justify-content-end" id="button-row">
+      <div class="col-md-6" id="button-div">
+        <div id="buttonContainer">
+          <button id="startButton" input="button">START</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div id="answerBlock"></div>
+  <div class="container">
+    <div class="row justify-content-end" id="question-row">
+      <div class="col-md-6" id="question-div">
+        <div id="triviaQuestion"></div>
+      </div>
+    </div>
+  </div>
 
-  <div id="answerImg"></div>
+  <div class="container">
+    <div class="row justify-content-end" id="answer-row">
+      <div class="col-md-6" id="answer-div">
+        <div id="answerBlock"></div>
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <div class="row justify-content-end" id="image-row">
+      <div class="col-md-6" id="image-div">
+        <div id="answerImg"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-end" id="timer-row">
+      <div class="col-md-6" id="timer-div">
+        <div id="timerBlock"></div>
+      </div>
+    </div>
+  </div>
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="./Assets/JavaScript/app.js"></script>

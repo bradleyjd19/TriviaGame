@@ -17,14 +17,14 @@ $(document).ready(function() {
       correctAnswer: 2,
       winImg: "https://media.giphy.com/media/4NpCE946C6MvvWMyD6/giphy.gif",
       loseImg: "https://media.giphy.com/media/ZFKHhEw2oCKhq/giphy.gif",
-      factoid: "The #11 seed has reached the Final Four three times; LSU (1986), George Mason (2006), and VCU (2011)."
+      factoid: "The 11 seed has reached the Final Four three times, LSU in 1986, George Mason in 2006, and VCU in 2011."
     },
 
     trivia2 = {
       question: "Which school won the first NCAA tournament?",
       answerArr: ["North Carolina", "Oregon", "Princeton", "Ohio State"],
       correctAnswer: 1,
-      winImg: "https://media.giphy.com/media/1isLj38HKNnlSKC4Ym/giphy.gif",
+      winImg: "https://prohoopshistory.files.wordpress.com/2014/10/bob-davies-swinging-layup.gif",
       loseImg: "https://media.giphy.com/media/AjixnPlG9oqWY/giphy.gif",
       factoid: "Oregon defeated Ohio State 46-33 in the first NCAA tournament title game, held in 1939."
     },
@@ -35,7 +35,7 @@ $(document).ready(function() {
       correctAnswer: 0,
       winImg: "https://media.giphy.com/media/1lBHM3zkIFTKSdHCHR/giphy.gif",
       loseImg: "https://media.giphy.com/media/vkrg8cmXK2QWQ/giphy.gif",
-      factoid: "Kentucky has the most appearances with 58, leading UNC (50), Kansas (48), and UCLA (47)."
+      factoid: "Kentucky has the most appearances with 58."
     }
 
   ];
@@ -46,8 +46,12 @@ console.log(trivQuest.length);
 
   // Create a start screen
   function startMenu() {
-    $("div").hide();
-    $("#buttonContainer").show();
+    $("#triviaQuestion").hide();
+    $("#answerBlock").hide();
+    $("#answerImg").hide();
+    var bgAudio = document.getElementById("bgAudio");
+    bgAudio.play();
+    // bgAudio.volume = 0.1;
     startClick();
   }
 
@@ -55,6 +59,7 @@ console.log(trivQuest.length);
   function startClick() {
     $("#startButton").on("click", function() {
       $("div").show();
+      $("#header-container").remove();
       $("#titleName").hide();
       $("#buttonContainer").hide();
       playGame();
@@ -73,7 +78,7 @@ console.log(trivQuest.length);
   // Display 4 answer choices
     function callQuestion(trivia) {
       var triviaQuestion = $("<span>");
-      triviaQuestion.addClass("choices");
+      triviaQuestion.addClass("question");
       triviaQuestion.text(trivia.question);
       $("#triviaQuestion").append(triviaQuestion);
       for (var i = 0; i < trivia.answerArr.length; i++) {  
@@ -102,7 +107,9 @@ console.log(trivQuest.length);
     function clearScreen() {
       $("span").remove();
       $("button").remove();
-      $("div").empty();
+      $("#triviaQuestion").empty();
+      $("#answerBlock").empty();
+      $("#answerImg").empty();
     }
 
   
@@ -114,7 +121,7 @@ console.log(trivQuest.length);
   
   function decrement() {
     timerNum--;
-    $("#timerBlock").html("Time: " + timerNum);
+    $("#timerBlock").html("Time " + timerNum);
     if (timerNum === 0) {
       stopTimer();
     }
@@ -157,8 +164,8 @@ console.log(trivQuest.length);
     currentQuestion++;
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
     var funFact = trivia.factoid;
-    $("#triviaQuestion").html("That's correct! " + funFact);
-    $("#answerBlock").html("Correct Answer: " + rightChoice);
+    $("#triviaQuestion").html("That is correct! " + funFact);
+    $("#answerBlock").html("Correct Answer &nbsp&nbsp&nbsp&nbsp" + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.winImg);
     $("#answerImg").append(imgDisplay);
@@ -170,7 +177,7 @@ console.log(trivQuest.length);
     var rightChoice = trivia.answerArr[trivia.correctAnswer];
     var funFact = trivia.factoid;
     $("#triviaQuestion").html("Nice try! " + funFact);
-    $("#answerBlock").html("Correct Answer: " + rightChoice);
+    $("#answerBlock").html("Correct Answer &nbsp&nbsp&nbsp&nbsp" + rightChoice);
     var imgDisplay = $("<img>");
     imgDisplay.attr("src", trivia.loseImg);
     $("#answerImg").append(imgDisplay);
