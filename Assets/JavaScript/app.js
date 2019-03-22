@@ -36,6 +36,24 @@ $(document).ready(function() {
       winImg: "https://media.giphy.com/media/1lBHM3zkIFTKSdHCHR/giphy.gif",
       loseImg: "https://media.giphy.com/media/vkrg8cmXK2QWQ/giphy.gif",
       factoid: "Kentucky has the most appearances with 58."
+    },
+
+    trivia4 = {
+      question: "In 2013, which school became the only 15 seed to advance to the Sweet Sixteen?",
+      answerArr: ["Norfolk State", "Middle Tenn State", "Lehigh", "Florida Gulf Coast"],
+      correctAnswer: 3,
+      winImg: "http://assets.sbnation.com/assets/2364375/FGCU_medium.gif",
+      loseImg: "https://cdn-images-1.medium.com/max/1600/1*Gi5ch8v66o_0D792Gyl4yA.gif",
+      factoid: "Florida Gulf Coast defeated Georgetown and San Diego State before losing to Florida."
+    },
+
+    trivia5 = {
+      question: "In what year did the NCAA tournament expand from 64 to 68 teams?",
+      answerArr: ["2010", "2011", "2012", "2013"],
+      correctAnswer: 1,
+      winImg: "https://nesncom.files.wordpress.com/2014/03/mercer-dance.gif?w=400&h=225&zoom=2",
+      loseImg: "https://media.giphy.com/media/GpVCw4GOJuuL6/giphy.gif",
+      factoid: "The NCAA Selection Committee introduced the Last Four in 2011."
     }
 
   ];
@@ -51,7 +69,7 @@ console.log(trivQuest.length);
     $("#answerImg").hide();
     var bgAudio = document.getElementById("bgAudio");
     bgAudio.play();
-    // bgAudio.volume = 0.1;
+    bgAudio.volume = 0.1;
     startClick();
   }
 
