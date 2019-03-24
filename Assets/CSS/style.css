@@ -29,7 +29,8 @@ body {
 }
 
 #titleName,
-#startButton {  
+#startButton,
+#resetButton {  
   text-align: center;
   color: white;
 }
@@ -42,7 +43,8 @@ body {
   font-size: 60px;
 }
 
-#startButton {
+#startButton,
+#resetButton {
   height: 50px;
   width: 200px;
   margin-top: 75px;
@@ -53,7 +55,8 @@ body {
 #timerBlock,
 #triviaQuestion,
 #answerBlock,
-#answerImg {
+#answerImg,
+#resetBlock {
   text-align: center;
   color: white;
 }
@@ -63,7 +66,8 @@ body {
   font-size: 50px;
 }
 
-#triviaQuestion {
+#triviaQuestion,
+#resetBlock {
   padding-top: 70px;
   font-size: 40px;
 }
