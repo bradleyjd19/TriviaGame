@@ -103,9 +103,6 @@ $(document).ready(function() {
 
   ];
 
-console.log(trivQuest[0].correctAnswer);
-console.log(trivQuest.length);
-
 
   // Create a start screen
   function startMenu() {
@@ -254,7 +251,7 @@ console.log(trivQuest.length);
         console.log("Correct");
         console.log(correctGuesses);
       }      
-      setTimeout(nextQuestion, 1000 * 4);
+      setTimeout(nextQuestion, 1000 * 10);
     })
   }
 
