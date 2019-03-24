@@ -112,10 +112,7 @@ console.log(trivQuest.length);
     $("#triviaQuestion").hide();
     $("#answerBlock").hide();
     $("#answerImg").hide();
-    $("#resetBlock").hide();
-    var bgAudio = document.getElementById("bgAudio");
-    bgAudio.play();
-    bgAudio.volume = 0.1;
+    $("#resetBlock").hide();    
     startClick();
   }
 
@@ -129,6 +126,9 @@ console.log(trivQuest.length);
       $("#answerBlock").empty();
       $("#timerBlock").empty();
       $("#triviaQuestion").empty();
+      var bgAudio = document.getElementById("bgAudio");
+      bgAudio.play();
+      bgAudio.volume = 0.1;
       playGame();
     })
   }
