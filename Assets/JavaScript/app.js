@@ -9,6 +9,8 @@ $(document).ready(function() {
   var intervalId;
   var currentQuestion = 0;
 
+
+  // Question/Answer objects
   var trivQuest = [
 
     trivia1 = {
@@ -100,11 +102,10 @@ $(document).ready(function() {
       loseImg: "https://media.giphy.com/media/63LR25l9lvEUa5FhFI/giphy.gif",
       factoid: "With the exception of the 5, each of the top 8 seeds have produced an eventual winner."
     }
-
   ];
 
 
-  // Create a start screen
+  // Create a start screen, hide elements that aren't used yet
   function startMenu() {
     $("#triviaQuestion").hide();
     $("#answerBlock").hide();
@@ -114,6 +115,7 @@ $(document).ready(function() {
   }
 
 
+  // Create a click event to begin the game, hide start screen elements, empty out previously used elements on a reset, begin audio
   function startClick() {
     $("#startButton").on("click", function() {
       $("div").show();
@@ -131,80 +133,89 @@ $(document).ready(function() {
   }
 
 
+  // Run the start menu and click function
   startMenu();
 
+
+  // Run the main function of the game
   function playGame() {
     callQuestion(trivQuest[currentQuestion]);
   }
   
 
-  // Display a question
-  // Display 4 answer choices
-    function callQuestion(trivia) {
-      var triviaQuestion = $("<span>");
-      triviaQuestion.addClass("question");
-      triviaQuestion.text(trivia.question);
-      $("#triviaQuestion").append(triviaQuestion);
-      for (var i = 0; i < trivia.answerArr.length; i++) {  
-        var answers = $("<button>");
-        answers.addClass("choices");
-        answers.text(trivia.answerArr[i]);
-        $("#answerBlock").append(answers);
-      }
-      startTimer();
-      choiceClick(trivia);
+  // Dynamically create elements for questions and answers, begin timer, run click event for choosing answer
+  function callQuestion(trivia) {
+    var triviaQuestion = $("<span>");
+    triviaQuestion.addClass("question");
+    triviaQuestion.text(trivia.question);
+    $("#triviaQuestion").append(triviaQuestion);
+    for (var i = 0; i < trivia.answerArr.length; i++) {  
+      var answers = $("<button>");
+      answers.addClass("choices");
+      answers.text(trivia.answerArr[i]);
+      $("#answerBlock").append(answers);
     }
+    startTimer();
+    choiceClick(trivia);
+  }
 
-    function nextQuestion() {
+
+  // Clear elements for next question, reset the timer, check to see if there are more questions (current question has been iterated, compare it to object length), if more - call the next question, if not - display user's score and "play again" button, on click - reset the game to start menu
+  function nextQuestion() {
+    clearScreen();
+    resetTimer();
+    if (currentQuestion < trivQuest.length) {
+      callQuestion(trivQuest[currentQuestion]);
+    }
+    else {
+      stopTimer();
       clearScreen();
-      resetTimer();
-      if (currentQuestion < trivQuest.length) {
-        callQuestion(trivQuest[currentQuestion]);
-      }
-      else {
-        stopTimer();
-        clearScreen();
-        $("#timerBlock").html("You got " + correctGuesses + " out of " + trivQuest.length + "!");
-        var resetButton = $("<button>");
-        resetButton.text("Play Again!");
-        resetButton.attr("id", "resetButton");
-        $("#resetBlock").append(resetButton);
-        $("#resetButton").on("click", function() {
-          resetGame();
-          console.log(this);
-        })
-      }
+      $("#timerBlock").html("You got " + correctGuesses + " out of " + trivQuest.length + "!");
+      var resetButton = $("<button>");
+      resetButton.text("Play Again!");
+      resetButton.attr("id", "resetButton");
+      $("#resetBlock").append(resetButton);
+      $("#resetButton").on("click", function() {
+        resetGame();
+      })
     }
+  }
 
-    function resetGame() {
-      $("#timerBlock").hide();
-      $("#resetButton").remove();
-      $("#header-container").show();
-      $("#titleName").show();
-      $("#buttonContainer").show();
-      $("#startButton").show();
-      correctGuesses = 0;
-      wrongGuesses = 0;
-      currentQuestion = 0;
-      startMenu();
-    }
 
-    function clearScreen() {
-      $("span").remove();
-      $("#startButton").hide();
-      $("#triviaQuestion").empty();
-      $("#answerBlock").empty();
-      $("#answerImg").empty();
-      $("#timerBlock").empty();
-    }
+  // Hide elements not needed and show those needed on start screen, reset all user guesses and set current question back to 0, run start function
+  function resetGame() {
+    $("#timerBlock").hide();
+    $("#resetButton").remove();
+    $("#header-container").show();
+    $("#titleName").show();
+    $("#buttonContainer").show();
+    $("#startButton").show();
+    correctGuesses = 0;
+    wrongGuesses = 0;
+    currentQuestion = 0;
+    startMenu();
+  }
 
-  
-  // Display a timer
+
+  // Removes and empties elements when needed 
+  function clearScreen() {
+    $("span").remove();
+    $("#startButton").hide();
+    $("#triviaQuestion").empty();
+    $("#answerBlock").empty();
+    $("#answerImg").empty();
+    $("#timerBlock").empty();
+  }
+
+
+  // Define initial parameters for timer
   function startTimer() {
     clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
   }
   
+
+  // Display timer and decrement, if decrements to 0, run timeout function
   function decrement() {
     timerNum--;
     $("#timerBlock").html("Time " + timerNum);
@@ -213,6 +224,8 @@ $(document).ready(function() {
     }
   }
 
+
+  // If timer runs out during question, wrong guesses +1, current question +1, display that time is up, display the correct answer, run next question after defined timeout
   function timeOut () {
     var answer = trivQuest[currentQuestion].answerArr[trivQuest[currentQuestion].correctAnswer];
     stopTimer();
@@ -224,18 +237,21 @@ $(document).ready(function() {
     setTimeout(nextQuestion, 1000 * 5)
   }
   
+
+  // Stop the timer
   function stopTimer() {
     clearInterval(intervalId);
   }
 
+
+  // Reset the timer
   function resetTimer() {
     timerNum = 20;
     startTimer();
   }
 
   
-  // Create a click event
-  // Allow only one choice to be made
+  // Create click function for selecting answers, based on click run correct or incorrect function, run next question function after defined timeout
   function choiceClick(trivia) {
     $("#answerBlock").unbind("click").on("click", ".choices", function(event) {
       event.stopPropagation();
@@ -243,19 +259,15 @@ $(document).ready(function() {
       var rightChoice = trivia.answerArr[trivia.correctAnswer];
       if ($(this).text() !== rightChoice) {
         incorrect(trivia);
-        console.log("Incorrect");
-        console.log(wrongGuesses);
       }
       else {
-        correct(trivia);        
-        console.log("Correct");
-        console.log(correctGuesses);
+        correct(trivia);
       }      
       setTimeout(nextQuestion, 1000 * 10);
     })
   }
 
-
+  // Correct function, correct guesses +1, current question +1, display the correct answer and gif associated with correct answer
   function correct(trivia) {
     correctGuesses++;
     currentQuestion++;
@@ -268,6 +280,8 @@ $(document).ready(function() {
     $("#answerImg").append(imgDisplay);
   }
 
+
+  // Incorrect function, wrong guesses +1, current question +1, display the correct answer and gif associated with wrong answer
   function incorrect(trivia) {
     wrongGuesses++;
     currentQuestion++;
@@ -281,20 +295,4 @@ $(document).ready(function() {
   }
   
 
-
-  
-
-
-
-  
-
-  // If correct, play winning message/gif/image
-  // If incorrect, show correct answer, play losing message/gif/image
-  // Increment correct/incorrect
-  // Display next question
-  // Once all questions have been displayed, show results
-  // Display reset button to start game over
-
-
-
-})
+});
