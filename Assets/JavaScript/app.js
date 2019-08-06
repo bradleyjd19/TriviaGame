@@ -35,7 +35,7 @@ $(document).ready(function() {
       question: "Which school has participated in the most NCAA tournaments?",
       answerArr: ["Kentucky", "North Carolina", "UCLA", "Kansas"],
       correctAnswer: 0,
-      winImg: "https://media.giphy.com/media/1lBHM3zkIFTKSdHCHR/giphy.gif",
+      winImg: "https://media1.giphy.com/media/ODVyKJ8CWhrMs/200w.webp?cid=790b76115d491d8c345a38636b6cce8c&rid=200w.webp",
       loseImg: "https://media.giphy.com/media/vkrg8cmXK2QWQ/giphy.gif",
       factoid: "Kentucky has the most appearances with 58."
     },
