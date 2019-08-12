@@ -15,27 +15,9 @@ body {
   font-family: "NCAA Colorado Buffs Boulder Bold";
 }
 
-.container,
-.row {
-  margin: 0 auto;
-}
-
 #header-row {
   margin-top: 5rem;
 }
-
-#header-row,
-#title-row,
-#button-row,
-#question-row,
-#answer-row,
-#image-row,
-#timer-row,
-#reset-row {
-  display: flex;
-  justify-content: end;
-}
-
 
 #button-div,
 #title-div {
@@ -102,6 +84,14 @@ body {
 }
 
 @media only screen and (max-width: 1025px) {
+
+  .container {
+    margin: 0;
+  }
+  
+  .row {
+    margin: 0 auto;
+  }
 
   #logo {
     width: 350px;
