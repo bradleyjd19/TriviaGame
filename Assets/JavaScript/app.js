@@ -35,7 +35,7 @@ $(document).ready(function() {
       question: "Which school has participated in the most NCAA tournaments?",
       answerArr: ["Kentucky", "North Carolina", "UCLA", "Kansas"],
       correctAnswer: 0,
-      winImg: "https://media1.giphy.com/media/ODVyKJ8CWhrMs/200w.webp?cid=790b76115d491d8c345a38636b6cce8c&rid=200w.webp",
+      winImg: "https://media.giphy.com/media/9CZMqJSBy1I8clhcVQ/giphy.gif",
       loseImg: "https://media.giphy.com/media/vkrg8cmXK2QWQ/giphy.gif",
       factoid: "Kentucky has the most appearances with 58."
     },
@@ -53,18 +53,18 @@ $(document).ready(function() {
       question: "In what year did the NCAA tournament expand from 64 to 68 teams?",
       answerArr: ["2010", "2011", "2012", "2013"],
       correctAnswer: 1,
-      winImg: "https://nesncom.files.wordpress.com/2014/03/mercer-dance.gif?w=400&h=225&zoom=2",
+      winImg: "https://media.giphy.com/media/lplig0CzXZVuSm7PAA/giphy.gif",
       loseImg: "https://media.giphy.com/media/GpVCw4GOJuuL6/giphy.gif",
       factoid: "The NCAA Selection Committee introduced the Last Four in 2011."
     },
 
     trivia6 = {
-      question: "Which conference has the most titles all-time?",
-      answerArr: ["ACC", "BIG 12", "PAC 12", "SEC"],
-      correctAnswer: 2,
+      question: "Which conference is tied with the PAC 12 for the most titles all-time?",
+      answerArr: ["ACC", "BIG 10", "BIG 12", "SEC"],
+      correctAnswer: 0,
       winImg: "https://media.giphy.com/media/1gUovfcKYOr4QCCPS8/giphy.gif",
       loseImg: "http://www.slate.com/content/dam/slate/articles/sports/sports_nut/2015/04/Kentucky-Notre.gif",
-      factoid: "With 15 titles, the PAC 12 has one more than the ACC."
+      factoid: "The two leagues have both won 15 National Championships."
     },
 
     trivia7 = {
